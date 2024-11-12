@@ -1,0 +1,32 @@
+.dialog-content {
+    padding: 25px;
+}
+
+.resource-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-field {
+    width: 100%;
+}
+
+.mat-form-field {
+    width: 100%;
+}
+
+.dialog-actions {
+    padding: 10px 20px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+button[mat-button] {
+    min-width: 100px;
+}
+
+button[mat-raised-button] {
+    padding: 0 20px;
+}

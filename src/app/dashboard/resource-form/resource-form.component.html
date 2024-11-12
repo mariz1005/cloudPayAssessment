@@ -1,0 +1,28 @@
+<h2 mat-dialog-title>Add a New Resource</h2>
+<mat-divider></mat-divider>
+<mat-dialog-content class="dialog-content">
+  <form class="resource-form">
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Resource Name</mat-label>
+      <input matInput [(ngModel)]="resource.name" name="name" placeholder="Enter resource name" required>
+      <mat-error *ngIf="!resource.name">Resource name is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Year</mat-label>
+      <input matInput [(ngModel)]="resource.year" name="year" placeholder="Enter year" required>
+      <mat-error *ngIf="!resource.year">Year is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Color</mat-label>
+      <input matInput [(ngModel)]="resource.color" name="color" placeholder="Enter color" required>
+      <mat-error *ngIf="!resource.color">Color is required</mat-error>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end" class="dialog-actions">
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-raised-button color="primary" (click)="onSubmit()" cdkFocusInitial>Submit</button>
+</mat-dialog-actions>

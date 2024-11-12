@@ -1,0 +1,24 @@
+<div class="user-details-container">
+  <button mat-icon-button color="primary" (click)="goBack()">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+
+  <mat-card class="user-card">
+    <mat-card-header>
+      <div mat-card-avatar class="user-avatar">
+        <img [src]="user.avatar" alt="User Avatar" />
+      </div>
+      <mat-card-title>{{ user.first_name }} {{ user.last_name }}</mat-card-title>
+      <mat-card-subtitle>{{ user.email }}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div class="user-info">
+        <p><strong>ID:</strong> {{ user.id }}</p>
+        <p><strong>First Name:</strong> {{ user.first_name }}</p>
+        <p><strong>Last Name:</strong> {{ user.last_name }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

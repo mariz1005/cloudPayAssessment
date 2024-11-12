@@ -1,0 +1,72 @@
+<div class="dashboard-container">
+  <mat-toolbar color="primary" class="dashboard-toolbar">
+    <h2 class="dashboard-title">Resources</h2>
+    <button mat-button color="accent" (click)="logout()">
+      <mat-icon>logout</mat-icon> Logout
+    </button>
+  </mat-toolbar>
+
+  <!-- Resources Section -->
+  <div class="resources-header">
+    <button mat-icon-button color="primary" *ngIf="isAdmin" (click)="goBack()">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <h2 class="dashboard-title"></h2>
+    <button mat-raised-button color="primary" (click)="addResource({})">Add New Resource</button>
+  </div>
+
+  <!-- Resource Form -->
+  <div *ngIf="isEditMode || isAddMode" class="resource-form-container">
+    <mat-card class="form-card">
+      <h3>{{ isEditMode ? 'Edit Resource' : 'Add New Resource' }}</h3>
+      <form [formGroup]="resourceForm" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Name</mat-label>
+          <input matInput formControlName="name" placeholder="Enter resource name" required>
+          <mat-error *ngIf="resourceForm.get('name')?.invalid">Name is required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Year</mat-label>
+          <input matInput formControlName="year" placeholder="Enter resource year" required>
+          <mat-error *ngIf="resourceForm.get('year')?.invalid">Year is required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Color</mat-label>
+          <input matInput formControlName="color" placeholder="Enter color" required>
+          <mat-error *ngIf="resourceForm.get('color')?.invalid">Color is required</mat-error>
+        </mat-form-field>
+
+        <div class="actions">
+          <button mat-button type="button" (click)="onCancel()">Cancel</button>
+          <button mat-raised-button color="primary" type="submit">
+            {{ isEditMode ? 'Update Resource' : 'Add Resource' }}
+          </button>
+        </div>
+      </form>
+    </mat-card>
+  </div>
+
+  <!-- Resource List -->
+  <div class="resource-list-container" *ngIf="!isEditMode && !isAddMode">
+    <mat-card class="resource-list-card">
+      <ul class="resource-list">
+        <li *ngFor="let resource of resources" class="resource-item">
+          <div class="resource-info">
+            <strong>{{ resource.name }}</strong> ({{ resource.year }})
+            <span class="color-box" [style.background-color]="resource.color">{{ resource.color }}</span>
+          </div>
+          <div class="resource-actions">
+            <button mat-icon-button color="primary" (click)="onEditResource(resource)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="onDeleteResource(resource.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </li>
+      </ul>
+    </mat-card>
+  </div>
+</div>
